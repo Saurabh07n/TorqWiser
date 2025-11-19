@@ -273,77 +273,99 @@ export default function LoanVsSIPCalculator() {
           </div>
 
           {/* Results Panel */}
-          <div className="lg:col-span-2 space-y-6 md:space-y-8">
-            {/* Primary EMI Display */}
-            <div className="text-center">
-              <KPICard
-                label="Your Monthly EMI"
-                value={formatINR(results.emi)}
-                description="Loan payment"
-                isPrimary={true}
-                delay={0.1}
-              />
+          <div className="lg:col-span-2 space-y-6">
+            {/* Blue Top Banner - Key Difference */}
+            <div className="bg-blue-50 border-blue-200 rounded-xl p-6 text-white shadow-lg">
+              <div className="text-center">
+                <div className="text-3xl md:text-4xl font-bold mb-2 flex items-center justify-center gap-2">
+                  <span className="text-2xl">
+                    {results.sipReturns > results.totalInterest ? '📈' : '📉'}
+                  </span>
+                  <span className={results.sipReturns >= results.totalInterest ? 'text-green-700' : 'text-red-700'}>
+                    {results.sipReturns >= results.totalInterest ? '+' : ''}{formatINR(results.sipReturns - results.totalInterest)}
+                  </span>
+                </div>
+                <div className="text-blue-900 text-sm">
+                  SIP Returns: {formatINR(results.sipReturns)} • Loan Interest: {formatINR(results.totalInterest)} • Tenure: {calculateOptimalTenure(selectedStrategy)} months
+                </div>
+              </div>
             </div>
 
-            {/* Loan Details Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
-              <KPICard
-                label="Monthly EMI"
-                value={formatINR(results.emi)}
-                description="Loan payment"
-                delay={0.2}
-              />
-              <KPICard
-                label="Total Interest"
-                value={formatINR(results.totalInterest)}
-                description="Interest paid on loan"
-                delay={0.3}
-              />
-              <KPICard
-                label="Loan Tenure"
-                value={`${calculateOptimalTenure(selectedStrategy)} months`}
-                description="Recommended period"
-                delay={0.4}
-              />
-            </div>
+            {/* Two Column Layout */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Left Column - EMI Details */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+                  🏦 EMI Details
+                </h3>
+                
+                <div className="space-y-4">
+                  <KPICard
+                    label="Monthly EMI"
+                    value={formatINR(results.emi)}
+                    description="Loan payment"
+                    delay={0.1}
+                  />
+                  
+                  <KPICard
+                    label="Total Principal"
+                    value={formatINR(loanPrincipal)}
+                    description="Loan amount"
+                    delay={0.2}
+                  />
+                  
+                  <KPICard
+                    label="Total Interest"
+                    value={formatINR(results.totalInterest)}
+                    description="Interest paid"
+                    delay={0.3}
+                  />
+                  
+                  <KPICard
+                    label="Loan Tenure"
+                    value={`${calculateOptimalTenure(selectedStrategy)} months`}
+                    description="Payment period"
+                    delay={0.4}
+                  />
+                </div>
+              </div>
 
-            {/* SIP Details Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
-              <KPICard
-                label="Monthly SIP"
-                value={formatINR(results.monthlySIP)}
-                description="Investment amount"
-                delay={0.5}
-              />
-              <KPICard
-                label="SIP Principal"
-                value={formatINR(results.sipPrincipal)}
-                description="Total invested"
-                delay={0.6}
-              />
-              <KPICard
-                label="SIP Returns"
-                value={formatINR(results.sipReturns)}
-                description="Investment gains"
-                delay={0.7}
-              />
-            </div>
-
-            {/* Final Results */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <KPICard
-                label="SIP Final Value"
-                value={formatINR(results.sipFinalValue)}
-                description="Total investment corpus"
-                delay={0.8}
-              />
-              <KPICard
-                label="Net Position"
-                value={formatINR(results.netPosition)}
-                description="SIP value - Total interest"
-                trend={results.netPosition >= 0 ? 'up' : 'down'}
-                delay={0.9}
-              />
+              {/* Right Column - SIP Details */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+                  💰 SIP Details
+                </h3>
+                
+                <div className="space-y-4">
+                  <KPICard
+                    label="Monthly SIP"
+                    value={formatINR(results.monthlySIP)}
+                    description="Investment amount"
+                    delay={0.5}
+                  />
+                  
+                  <KPICard
+                    label="Total Principal"
+                    value={formatINR(results.sipPrincipal)}
+                    description="Total invested"
+                    delay={0.6}
+                  />
+                  
+                  <KPICard
+                    label="Total Returns"
+                    value={formatINR(results.sipReturns)}
+                    description="Investment gains"
+                    delay={0.7}
+                  />
+                  
+                  <KPICard
+                    label="Final Value"
+                    value={formatINR(results.sipFinalValue)}
+                    description="Total corpus"
+                    delay={0.8}
+                  />
+                </div>
+              </div>
             </div>
 
             {/* Chart */}
