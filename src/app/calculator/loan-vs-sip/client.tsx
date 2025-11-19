@@ -137,18 +137,19 @@ export default function LoanVsSIPCalculator() {
   const guidance = generateGuidance();
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gradient-to-br from-[#0F1419] via-[#1A1A1A] to-[#2C3E50]">
       <Navigation />
       
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Minimal Header */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between mb-6">
+      <main className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-12">
+        {/* Premium Header */}
+        <div className="mb-12">
+          <div className="flex items-center justify-between mb-8">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">Car Finance Planner</h1>
+              <h1 className="text-4xl md:text-5xl font-bold text-[#E8E8E8] font-heading mb-2">Car Finance Planner</h1>
+              <p className="text-[#707070] text-sm uppercase tracking-wider">Strategic Wealth Optimization</p>
             </div>
-            <div className="flex space-x-2">
-              <Button variant="outline" size="sm" onClick={resetToDefaults}>
+            <div className="flex space-x-3">
+              <Button variant="outline" size="sm" onClick={resetToDefaults} className="border-[rgba(232,232,232,0.2)] text-[#E8E8E8] hover:border-[#D4AF37] hover:text-[#D4AF37]">
                 <RotateCcw className="h-4 w-4 mr-2" />
                 Reset
               </Button>
@@ -156,7 +157,7 @@ export default function LoanVsSIPCalculator() {
           </div>
           
           {/* Strategy Selector */}
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-4">
             {[
               { key: 'balanced' as const, label: 'Balanced Approach', description: '5-year tenure' },
               { key: 'aggressive-emi' as const, label: 'Aggressive EMI', description: '3-4 year tenure' },
@@ -166,9 +167,9 @@ export default function LoanVsSIPCalculator() {
                 key={strategy.key}
                 variant={selectedStrategy === strategy.key ? 'default' : 'outline'}
                 onClick={() => setSelectedStrategy(strategy.key)}
-                className="capitalize flex flex-col items-center p-4 h-auto"
+                className="flex flex-col items-center p-6 h-auto min-w-[180px] uppercase tracking-wider"
               >
-                <span className="font-medium">{strategy.label}</span>
+                <span className="font-semibold text-sm mb-1">{strategy.label}</span>
                 <span className="text-xs opacity-75">{strategy.description}</span>
               </Button>
             ))}
@@ -210,10 +211,10 @@ export default function LoanVsSIPCalculator() {
                   min={0}
                   max={inputs.carPrice}
                 />
-                <div className="p-3 bg-blue-50 rounded-lg">
+                <div className="p-4 glass rounded-lg border border-[rgba(212,175,55,0.2)]">
                   <div className="flex justify-between text-sm">
-                    <span className="text-gray-600">Loan Principal:</span>
-                    <span className="font-semibold text-blue-700">
+                    <span className="text-[#707070] uppercase tracking-wider text-xs">Loan Principal:</span>
+                    <span className="font-bold text-[#D4AF37] font-mono">
                       {formatINR(loanPrincipal)}
                     </span>
                   </div>
@@ -235,10 +236,10 @@ export default function LoanVsSIPCalculator() {
                   step={0.001}
                   format="percentage"
                 />
-                <div className="p-3 bg-green-50 rounded-lg">
+                <div className="p-4 glass rounded-lg border border-[rgba(212,175,55,0.2)]">
                   <div className="flex justify-between text-sm">
-                    <span className="text-gray-600">Recommended Tenure:</span>
-                    <span className="font-semibold text-green-700">
+                    <span className="text-[#707070] uppercase tracking-wider text-xs">Recommended Tenure:</span>
+                    <span className="font-bold text-[#D4AF37] font-mono">
                       {calculateOptimalTenure(selectedStrategy)} months
                     </span>
                   </div>
@@ -273,30 +274,31 @@ export default function LoanVsSIPCalculator() {
           </div>
 
           {/* Results Panel */}
-          <div className="lg:col-span-2 space-y-6">
-            {/* Blue Top Banner - Key Difference */}
-            <div className="bg-blue-50 border-blue-200 rounded-xl p-6 text-white shadow-lg">
+          <div className="lg:col-span-2 space-y-8">
+            {/* Premium Top Banner - Key Difference */}
+            <div className="glass rounded-xl p-8 border border-[rgba(212,175,55,0.2)] shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold mb-2 flex items-center justify-center gap-2">
-                  <span className="text-2xl">
+                <div className="text-4xl md:text-5xl font-bold mb-4 flex items-center justify-center gap-3 font-mono">
+                  <span className="text-3xl">
                     {results.sipReturns > results.totalInterest ? '📈' : '📉'}
                   </span>
-                  <span className={results.sipReturns >= results.totalInterest ? 'text-green-700' : 'text-red-700'}>
+                  <span className={results.sipReturns >= results.totalInterest ? 'text-[#D4AF37]' : 'text-[#ef4444]'}>
                     {results.sipReturns >= results.totalInterest ? '+' : ''}{formatINR(results.sipReturns - results.totalInterest)}
                   </span>
                 </div>
-                <div className="text-blue-900 text-sm">
+                <div className="text-[#707070] text-sm uppercase tracking-wider">
                   SIP Returns: {formatINR(results.sipReturns)} • Loan Interest: {formatINR(results.totalInterest)} • Tenure: {calculateOptimalTenure(selectedStrategy)} months
                 </div>
               </div>
             </div>
 
             {/* Two Column Layout */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* Left Column - EMI Details */}
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-                  🏦 EMI Details
+              <div className="space-y-6">
+                <h3 className="text-lg font-semibold text-[#E8E8E8] uppercase tracking-wider flex items-center gap-3 font-heading">
+                  <span className="text-2xl">🏦</span>
+                  <span>EMI Details</span>
                 </h3>
                 
                 <div className="space-y-4">
@@ -331,9 +333,10 @@ export default function LoanVsSIPCalculator() {
               </div>
 
               {/* Right Column - SIP Details */}
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-                  💰 SIP Details
+              <div className="space-y-6">
+                <h3 className="text-lg font-semibold text-[#E8E8E8] uppercase tracking-wider flex items-center gap-3 font-heading">
+                  <span className="text-2xl">💰</span>
+                  <span>SIP Details</span>
                 </h3>
                 
                 <div className="space-y-4">

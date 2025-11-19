@@ -42,10 +42,10 @@ export function SliderField({
   };
 
   return (
-    <div className={cn("space-y-3", className)}>
+    <div className={cn("space-y-4", className)}>
       <div className="flex items-center justify-between">
-        <Label className="text-sm font-medium">{label}</Label>
-        <span className="text-sm font-semibold text-gray-700">
+        <Label className="text-sm font-semibold uppercase tracking-wider text-[#E8E8E8]">{label}</Label>
+        <span className="text-sm font-bold text-[#D4AF37] font-mono">
           {formatValue(value)}
         </span>
       </div>
@@ -73,7 +73,7 @@ export function SliderField({
       )}
       
       {description && (
-        <p className="text-xs text-gray-500">{description}</p>
+        <p className="text-xs text-[#707070]">{description}</p>
       )}
     </div>
   );

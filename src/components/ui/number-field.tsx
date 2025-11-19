@@ -149,13 +149,13 @@ export function NumberField({
   };
 
   return (
-    <div className={cn("space-y-2", className)}>
-      <Label htmlFor={label} className="text-sm font-medium">
+    <div className={cn("space-y-3", className)}>
+      <Label htmlFor={label} className="text-sm font-semibold uppercase tracking-wider text-[#E8E8E8]">
         {label}
       </Label>
       <div className="relative">
         {prefix && (
-          <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">
+          <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#707070] text-sm font-mono">
             {prefix}
           </span>
         )}
@@ -172,18 +172,19 @@ export function NumberField({
           step={step}
           placeholder={placeholder || `Enter ${label.toLowerCase()}`}
           className={cn(
-            prefix && "pl-8",
-            suffix && "pr-8"
+            "font-mono text-lg",
+            prefix && "pl-10",
+            suffix && "pr-10"
           )}
         />
         {suffix && (
-          <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">
+          <span className="absolute right-4 top-1/2 transform -translate-y-1/2 text-[#707070] text-sm font-mono">
             {suffix}
           </span>
         )}
       </div>
       {description && (
-        <p className="text-xs text-gray-500">{description}</p>
+        <p className="text-xs text-[#707070]">{description}</p>
       )}
     </div>
   );

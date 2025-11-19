@@ -1,9 +1,26 @@
 // src/app/layout.tsx
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Inter, Sora, Space_Mono } from 'next/font/google'
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ 
+  subsets: ['latin'],
+  variable: '--font-body',
+  display: 'swap',
+})
+
+const sora = Sora({ 
+  subsets: ['latin'],
+  variable: '--font-heading',
+  display: 'swap',
+})
+
+const spaceMono = Space_Mono({ 
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-mono',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: {
@@ -94,7 +111,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.className} h-full antialiased`}>
+      <body className={`${inter.variable} ${sora.variable} ${spaceMono.variable} ${inter.className} h-full antialiased`}>
         {children}
       </body>
     </html>

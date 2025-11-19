@@ -121,7 +121,7 @@ export function simulateBudgetStrategy(params: StrategyParams): StrategyResult {
 
   for (let m = 1; m <= horizonMonths; m++) {
     let sipThisMonth = 0;
-    
+
     // Loan processing
     if (m <= loan.tenureMonths) {
       const row = schedule[m - 1];

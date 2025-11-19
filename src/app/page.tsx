@@ -15,12 +15,12 @@ export const metadata = {
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gradient-to-br from-[#0F1419] via-[#1A1A1A] to-[#2C3E50]">
       <Navigation />
       <main>
         <HeroSection />
       </main>
-      <footer className="py-8 text-center text-gray-500 text-sm">
+      <footer className="py-8 text-center text-[#707070] text-sm">
         <p>© 2024 TorqWiser. Plan smarter, drive happier.</p>
       </footer>
     </div>

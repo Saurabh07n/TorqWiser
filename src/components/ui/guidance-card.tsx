@@ -19,26 +19,26 @@ interface GuidanceCardProps {
 const recommendationConfig = {
   positive: {
     icon: CheckCircle,
-    iconColor: 'text-green-600',
-    bgColor: 'bg-green-50',
-    borderColor: 'border-green-200',
-    textColor: 'text-green-800',
+    iconColor: 'text-[#D4AF37]',
+    bgColor: 'bg-[rgba(212,175,55,0.1)]',
+    borderColor: 'border-[rgba(212,175,55,0.3)]',
+    textColor: 'text-[#D4AF37]',
     emoji: '✅'
   },
   negative: {
     icon: XCircle,
-    iconColor: 'text-red-600',
-    bgColor: 'bg-red-50',
-    borderColor: 'border-red-200',
-    textColor: 'text-red-800',
+    iconColor: 'text-[#ef4444]',
+    bgColor: 'bg-[rgba(239,68,68,0.1)]',
+    borderColor: 'border-[rgba(239,68,68,0.3)]',
+    textColor: 'text-[#ef4444]',
     emoji: '🚫'
   },
   neutral: {
     icon: Lightbulb,
-    iconColor: 'text-blue-600',
-    bgColor: 'bg-blue-50',
-    borderColor: 'border-blue-200',
-    textColor: 'text-blue-800',
+    iconColor: 'text-[#1B4D5C]',
+    bgColor: 'bg-[rgba(27,77,92,0.1)]',
+    borderColor: 'border-[rgba(27,77,92,0.3)]',
+    textColor: 'text-[#1B4D5C]',
     emoji: '💡'
   }
 };
@@ -63,35 +63,35 @@ export function GuidanceCard({
       transition={{ duration: 0.5, delay }}
     >
       <Card className={cn(
-        "border-2 shadow-lg hover:shadow-xl transition-all duration-300",
+        "border-2 shadow-[0_8px_32px_rgba(0,0,0,0.3)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.4)] transition-all duration-300",
         config.bgColor,
         config.borderColor,
         className
       )}>
-        <CardContent className="p-6">
-          <div className="flex items-start space-x-4">
-            <div className={cn("p-2 rounded-full", config.bgColor)}>
-              <Icon className={cn("h-6 w-6", config.iconColor)} />
+        <CardContent className="p-8">
+          <div className="flex items-start space-x-6">
+            <div className={cn("p-3 rounded-xl", config.bgColor, "border border-current")}>
+              <Icon className={cn("h-8 w-8", config.iconColor)} />
             </div>
             
-            <div className="flex-1 space-y-3">
-              <div className="flex items-center space-x-2">
-                <span className="text-2xl">{config.emoji}</span>
-                <h3 className={cn("text-lg font-bold", config.textColor)}>
+            <div className="flex-1 space-y-4">
+              <div className="flex items-center space-x-3">
+                <span className="text-3xl">{config.emoji}</span>
+                <h3 className={cn("text-xl font-bold uppercase tracking-wider", config.textColor)}>
                   {title}
                 </h3>
               </div>
               
               <motion.div
-                initial={{ scale: 0.9 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 0.3, delay: delay + 0.2 }}
-                className={cn("text-3xl font-bold", config.textColor)}
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.4, delay: delay + 0.2 }}
+                className={cn("text-4xl font-bold font-mono", config.textColor)}
               >
                 {value}
               </motion.div>
               
-              <p className={cn("text-sm", config.textColor)}>
+              <p className={cn("text-sm leading-relaxed", config.textColor, "opacity-90")}>
                 {description}
               </p>
               

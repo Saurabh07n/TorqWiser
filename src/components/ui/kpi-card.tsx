@@ -28,22 +28,22 @@ export function KPICard({
   const getTrendIcon = () => {
     switch (trend) {
       case 'up':
-        return <TrendingUp className="h-4 w-4 text-green-600" />;
+        return <TrendingUp className="h-4 w-4 text-[#D4AF37]" />;
       case 'down':
-        return <TrendingDown className="h-4 w-4 text-red-600" />;
+        return <TrendingDown className="h-4 w-4 text-[#ef4444]" />;
       default:
-        return <Minus className="h-4 w-4 text-gray-400" />;
+        return <Minus className="h-4 w-4 text-[#707070]" />;
     }
   };
 
   const getTrendColor = () => {
     switch (trend) {
       case 'up':
-        return 'text-green-600';
+        return 'text-[#D4AF37]';
       case 'down':
-        return 'text-red-600';
+        return 'text-[#ef4444]';
       default:
-        return 'text-gray-500';
+        return 'text-[#707070]';
     }
   };
 
@@ -54,35 +54,35 @@ export function KPICard({
       transition={{ duration: 0.5, delay }}
     >
       <Card className={cn(
-        "p-6 border-0 shadow-sm hover:shadow-md transition-all duration-300",
-        isPrimary ? "bg-blue-50 border-blue-200" : "bg-white",
+        "p-8 border border-[rgba(232,232,232,0.1)] hover:border-[rgba(212,175,55,0.3)] transition-all duration-300",
+        isPrimary ? "bg-gradient-to-br from-[rgba(212,175,55,0.1)] to-[rgba(212,175,55,0.05)] border-[rgba(212,175,55,0.2)]" : "",
         className
       )}>
-        <div className="text-center space-y-3">
+        <div className="text-center space-y-4">
           <p className={cn(
-            "text-sm font-medium",
-            isPrimary ? "text-blue-700" : "text-gray-600"
+            "text-xs font-semibold uppercase tracking-wider",
+            isPrimary ? "text-[#D4AF37]" : "text-[#707070]"
           )}>
             {label}
           </p>
           <motion.p 
             className={cn(
-              "font-bold",
-              isPrimary ? "text-3xl md:text-4xl text-blue-900" : "text-2xl md:text-3xl text-gray-900"
+              "font-bold font-mono",
+              isPrimary ? "text-4xl md:text-5xl text-[#D4AF37]" : "text-3xl md:text-4xl text-[#E8E8E8]"
             )}
-            initial={{ scale: 0.8 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.3, delay: delay + 0.2 }}
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.4, delay: delay + 0.2 }}
           >
             {value}
           </motion.p>
           {description && (
-            <p className="text-xs text-gray-500">{description}</p>
+            <p className="text-xs text-[#707070]">{description}</p>
           )}
           {trend && trendValue && (
-            <div className="flex items-center justify-center space-x-1">
+            <div className="flex items-center justify-center space-x-2 pt-2">
               {getTrendIcon()}
-              <span className={cn("text-sm font-medium", getTrendColor())}>
+              <span className={cn("text-sm font-semibold", getTrendColor())}>
                 {trendValue}
               </span>
             </div>
